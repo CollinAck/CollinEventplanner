@@ -33,7 +33,9 @@ namespace CollinEventplanner.Controllers
                 query = query.Where(e => e.Category == category);
             }
 
-            var events = await query.ToListAsync();
+            var events = await query
+                .OrderBy(e => e.DateTime)
+                .ToListAsync();
 
             return View(events);
 

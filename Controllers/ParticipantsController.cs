@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using CollinEventplanner.Data;
 using CollinEventplanner.ViewModels;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CollinEventplanner.Controllers
 {
@@ -27,6 +28,8 @@ namespace CollinEventplanner.Controllers
 
             var viewModel = participant.Tickets
                 .GroupBy(t => t.Event)
+                // g. staat voor group, oftewel verwijst naar 'GroupBy' van bovenstaande
+                .OrderBy(g => g.Key.DateTime)
                 .Select(g => new ParticipantTicketsViewModel
                 {
                     EventName = g.Key.Name,
