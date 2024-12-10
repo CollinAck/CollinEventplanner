@@ -1,0 +1,101 @@
+﻿@model IEnumerable<CollinEventplanner.Models.Event>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <form asp-action="Index" method="get">
+        @Html.Partial("CategoryDropdown")
+        <button type="submit">Zoeken</button>
+    </form>
+</p>
+
+<p>
+    <a class="btn btn-secondary" asp-action="">Wis de filter</a>
+</p>
+
+<p>
+    <a class="btn btn-dark"  asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxParticipants)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvailableSpots)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageFileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxParticipants)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableSpots)
+            </td>
+                <td>
+                    <img src="/events/@item.ImageFileName" width="100" />
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                    <a asp-action="Edit" class="btn btn-danger" asp-route-id="@item.EventId">Edit</a> 
+                    <a asp-action="Details" class="btn btn-warning" asp-route-id="@item.EventId">Details</a>
+                    <a asp-action="Delete" class="btn btn-primary" asp-route-id="@item.EventId">Delete</a>
+
+                <form asp-action="ReserveTicket" method="post" style="display:inline;">
+                        <input type="hidden" name="eventId" value="@item.EventId" />
+                        <input type="hidden" name="participantId" value="1" /> <!-- Zie dummydata in database voor value="1" -->
+                        <button type="submit" class="btn btn-info" @(item.AvailableSpots == 0 ? "disabled" : "")>Reserveer Ticket</button>
+                    </form>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

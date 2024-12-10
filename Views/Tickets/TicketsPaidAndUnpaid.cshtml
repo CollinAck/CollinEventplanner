@@ -1,0 +1,56 @@
+﻿@model CollinEventplanner.ViewModels.TicketsPaidAndUnpaidViewModel
+
+<h2>Tickets Overzicht</h2>
+
+<p>
+    Op deze pagina kun je op een overzichtelijke manier zowel betaalde als onbetaalde tickets bekijken en beheren. 
+    De betaalde tickets worden netjes weergegeven in een aparte sectie, zodat je eenvoudig kunt zien welke reserveringen al zijn afgerond. 
+    Daarnaast worden de onbetaalde tickets apart weergegeven, zodat je duidelijk kunt bijhouden welke reserveringen nog openstaan.
+</p>
+
+<h3>Betaalde Tickets</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Bestelnummer</th>
+            <th>Event</th>
+            <th>Deelnemer</th>
+            <th>Datum van event</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model.PaidTickets)
+        {
+            <tr>
+                <td>@ticket.TicketId</td>
+                <td>@ticket.Event.Name</td>
+                <td>@ticket.Participant.Name</td>
+                <td>@ticket.Event.DateTime.ToString("dd-MM-yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Onbetaalde Tickets</h3>
+<a asp-action="ManageTickets" class="btn btn-info">Bevestig onbetaalde tickets</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Bestelnummer</th>
+            <th>Event</th>
+            <th>Deelnemer</th>
+            <th>Datum van event</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model.UnpaidTickets)
+        {
+            <tr>
+                <td>@ticket.TicketId</td>
+                <td>@ticket.Event.Name</td>
+                <td>@ticket.Participant.Name</td>
+                <td>@ticket.Event.DateTime.ToString("dd-MM-yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>

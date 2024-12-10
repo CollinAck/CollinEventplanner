@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <button onclick="window.location.href='https://localhost:7057/Identity/Account/Logout'">Uitloggen</button>
+            <img src="~/images/account.png" height="40" width="40">
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <div>
+                <button onclick="window.location.href='https://localhost:7057/Identity/Account/Register'">WORD LID!</button>
+                <img src="~/images/account.png" style="cursor: pointer;" onclick="window.location.href='https://localhost:7057/Identity/Account/Login'" alt="account" height="40" width="40">
+            </div>
+        </li>
+
+    }
+</ul>

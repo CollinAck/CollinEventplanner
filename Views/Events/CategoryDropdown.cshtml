@@ -1,0 +1,25 @@
+﻿@if (ViewData["Categories"] is IEnumerable<string> categories)
+{
+    <select id="CategoryDropdown" name="category">
+        <option value="">Selecteer een categorie</option>
+        @foreach (var category in categories)
+        {
+            <option value="@category">@category</option>
+        }
+    </select>
+}
+
+else {
+<label for="Category" class="control-label">Category</label>
+<select id="Category" name="Category" class="form-control">
+    <option value="Anders">Anders</option>
+    <option value="Muziek">Muziek</option>
+    <option value="Eten">Eten</option>
+    <option value="Voorstelling">Voorstelling</option>
+    <option value="Zakelijk">Zakelijk</option>
+    <option value="Kunst">Kunst</option>
+    <option value="Feestdag">Feestdag</option>
+    <option value="Toernooi">Toernooi</option>
+</select>
+}
+

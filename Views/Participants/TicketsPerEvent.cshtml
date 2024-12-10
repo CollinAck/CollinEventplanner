@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CollinEventplanner.ViewModels.ParticipantTicketsViewModel>
+
+<h2>Mijn Tickets</h2>
+<p>
+    Hier kun je een overzicht zien van je gereserveerde tickets, gegroepeerd per evenement. 
+    Voor tickets die nog niet zijn betaald, kun je je afmelden door op de "Afmelden"-knop te klikken. 
+    Let op: voor tickets die al zijn betaald, kun je je niet meer afmelden, omdat je al aanwezig bent geweest bij het evenement. 
+    De betaling vindt plaats tijdens het evenement, dus er worden geen kosten in rekening gebracht bij het afmelden van onbetaalde tickets. 
+    Bekijk je reserveringen en beheer eenvoudig je deelname!
+</p>
+
+
+
+@foreach (var eventGroup in Model)
+{
+    <h3>@eventGroup.EventName (@eventGroup.EventDate.ToString("dd-MM-yyyy HH:mm"))</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Bestelnummer</th>
+                <th>Betaald</th>
+                <th>Optie tot afmelding bij NIET betaald</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in eventGroup.Tickets)
+            {
+                <tr>
+                    <td>@ticket.TicketId</td>
+                    <td>@(ticket.IsPaid ? "Ja" : "Nee")</td>
+                    <td>
+                        @if (!ticket.IsPaid)
+                        {
+                            <form asp-action="CancelReservation" method="post" style="display: inline;">
+                                <input type="hidden" name="ticketId" value="@ticket.TicketId" />
+                                <button type="submit" class="btn btn-primary">Afmelden voor event</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

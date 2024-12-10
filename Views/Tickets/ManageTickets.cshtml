@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CollinEventplanner.Models.Ticket>
+
+<h2>Beheer Tickets</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Bestelnummer</th>
+            <th>Event</th>
+            <th>Deelnemer</th>
+            <th>Acties</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+                <td>@ticket.TicketId</td>
+                <td>@ticket.Event.Name</td>
+                <td>@ticket.Participant.Name</td>
+                <td>
+                    @if (!ticket.IsPaid)
+                    {
+                        <form asp-action="MarkAsPaid" method="post">
+                            <input type="hidden" name="ticketId" value="@ticket.TicketId" />
+                            <button type="submit" class="btn btn-success">Markeer als Betaald</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
