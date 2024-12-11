@@ -4,6 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
+@if (TempData["ConfirmationMessage"] != null)
+{
+    <script>
+        alert("@TempData["ConfirmationMessage"]");
+    </script>
+}
+
 <h1>Welkom op de eventspagina!</h1>
 
 <p>

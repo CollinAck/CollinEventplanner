@@ -193,6 +193,8 @@ namespace CollinEventplanner.Controllers
             _context.Events.Update(@event);
             await _context.SaveChangesAsync();
 
+            TempData["ConformationMessage"] = "Je hebt het ticket voor het event gereserveerd!";
+
             return RedirectToAction(nameof(Index));
         }
 
