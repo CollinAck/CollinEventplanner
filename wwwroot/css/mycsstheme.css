@@ -13862,3 +13862,16 @@ label {
     color: white !important;
 }
 
+
+
+
+
+
+.footer-align-left {
+    text-align: left;
+}
+
+.footer-align-right {
+    text-align: right;
+    display: flex;
+}
