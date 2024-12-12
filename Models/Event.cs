@@ -13,19 +13,21 @@ namespace CollinEventplanner.Models
         public string Name { get; set; }
 
         [MaxLength(100)]
+        [Display(Name = "Beschrijving")]
         public string Description { get; set; }
 
         [Required]
+        [Display(Name = "Locatie")]
         public string Location { get; set; }
 
         [Required]
-        [Display(Name = "Time/Date")]
+        [Display(Name = "Tijd/Datum")]
         public DateTime DateTime { get; set; }
 
         [Required]
         [Precision(18,2)]
         [DisplayFormat(DataFormatString = "{0:C}")]
-        [Display(Name = "Ticketprice")]
+        [Display(Name = "Ticketprijs")]
         public decimal Cost { get; set; }
 
         [Required]
@@ -36,7 +38,7 @@ namespace CollinEventplanner.Models
         [Display(Name = "Left")]
         public int AvailableSpots { get; set; }
 
-        [Display(Name = "Foto")]
+        [Display(Name = "")]
         public string? ImageFileName { get; set; }
 
         [Required]

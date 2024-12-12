@@ -27,19 +27,38 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Events" asp-action="Index">Events</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Kassa</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="" asp-controller="Tickets" asp-action="TicketsPaidAndUnpaid">OverzichtTickets</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="Tickets" asp-action="ManageTickets">BetalingTickets</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Kassa</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Tickets" asp-action="TicketsPaidAndUnpaid">OverzichtTickets</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Tickets" asp-action="ManageTickets">BetalingTickets</a>
 
-                                <!-- Mooie lijn tussen dropdownmenu, wellicht gebruiken, indien meer opties bij dropdownmenu -->
-                                @* <div class="dropdown-divider"></div>
+                                    <!-- Mooie lijn tussen dropdownmenu, wellicht gebruiken, indien meer opties bij dropdownmenu -->
+                                    @* <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Separated link</a> *@
 
-                                
-                            </div>
-                        </li>
+
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("Kassa"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Kassa</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Tickets" asp-action="TicketsPaidAndUnpaid">OverzichtTickets</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Tickets" asp-action="ManageTickets">BetalingTickets</a>
+
+                                    <!-- Mooie lijn tussen dropdownmenu, wellicht gebruiken, indien meer opties bij dropdownmenu -->
+                                    @* <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Separated link</a> *@
+
+
+                                </div>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Participants" asp-action="TicketsPerEvent">Deelnemer</a>
                         </li>

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CollinEventplanner.ViewModels.HomePageViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -8,6 +10,53 @@
     <img src="~/images/startpagina.jpg" alt="Startpagina" width="600" height="400" />
 </div>
 
+<br /> <!-- TWEE witregels -->
+
+<h2>De aankomende 4 evenementen</h2>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Event
+            </th>
+            <th>
+                Beschrijving
+            </th>
+            <th>
+                Tijd en Datum
+            </th>
+            <th>
+                <!-- Leeg voor detailsknop-->
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Events)
+        {
+            <tr class="event-row">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Events", new { id = item.EventId })" class="btn btn-success">Bekijk details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 <div class="text-center">
     <button type="button" onclick="window.location.href='https://localhost:7057/Events'" class="btn btn-primary btn-lg">BEKIJK ONS AANBOD</button>
 </div>
+
+
+

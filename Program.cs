@@ -69,7 +69,7 @@ namespace CollinEventplanner
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                var roles = new[] { "Admin", "Organisator", "Member", "Cashier" };
+                var roles = new[] { "admin", "Kassa", "Member" };
 
                 foreach (var role in roles)
                 {
@@ -97,6 +97,29 @@ namespace CollinEventplanner
                 }
 
             }
+
+            // dummy-data voor account
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+                string email = "kassa@kassa.com";
+                string password = "Kassa1234,";
+
+                if (await userManager.FindByEmailAsync(email) == null)
+                {
+                    var user = new IdentityUser();
+                    user.UserName = email;
+                    user.Email = email;
+
+                    await userManager.CreateAsync(user, password);
+
+                    await userManager.AddToRoleAsync(user, "Kassa");
+                }
+
+            }
+
 
 
             app.Run();

@@ -67,6 +67,13 @@
     </dl>
 </div>
 <div>
-    <a class="btn btn-danger" asp-action="Edit" asp-route-id="@Model?.EventId">Edit</a> 
-    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-danger" asp-action="Edit" asp-route-id="@Model?.EventId">Edit</a>
+    }
+    <a class="btn btn-dark" asp-action="Index">ALLE events</a>
+    <a class="btn btn-light" asp-area="" asp-controller="Home" asp-action="Index">Homepagina - 4 events</a>
+
+
+
 </div>
