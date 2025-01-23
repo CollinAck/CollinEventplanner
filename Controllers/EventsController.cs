@@ -198,6 +198,6 @@ namespace CollinEventplanner.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        // Dit is een voorbeeld "comment" om te laten zien hoe je iets moet pushen
     }
 }
